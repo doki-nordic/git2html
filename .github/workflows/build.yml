@@ -34,7 +34,7 @@ jobs:
         cp ../dist/git2html-linux ./git2html
         7z a -t7z -mx=9 ../pack/git2html-linux-x64.7z *
         rm *
-        cp ../dist/ggit2html-macos ./git2html
+        cp ../dist/git2html-macos ./git2html
         7z a -t7z -mx=9 ../pack/git2html-macos-x64.7z *
         rm *
         cp ../dist/git2html.sh ./git2html
