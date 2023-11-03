@@ -39,6 +39,6 @@ fs.copyFileSync('node_modules/diff2html-cli/template.html', 'dist/template.html'
 
 
 file = fs.readFileSync('git2html', 'utf-8');
-file = file.replace('<<<PACKAGE>>>', fs.readFileSync('package-minimal.json'));
+file = file.replace('<<<PACKAGE>>>', fs.readFileSync('package.json'));
 file = file.replace('<<<SOURCE>>>', fs.readFileSync('git2html.mjs'));
 fs.writeFileSync('dist/git2html.sh', file, { mode: 0o755 });

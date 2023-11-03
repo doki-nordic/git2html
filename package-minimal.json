@@ -1,7 +1,0 @@
-{
-  "name": "git2html",
-  "private": true,
-  "dependencies": {
-      "diff2html-cli": "^5.2.13"
-  }
-}

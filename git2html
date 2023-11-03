@@ -25,18 +25,4 @@ if [[ ! -d "$SCRIPT_DIR/node_modules/diff2html-cli" ]]; then
     (cd "$SCRIPT_DIR"; npm install)
 fi
 
-if [ "$#" -lt 3 ]; then
-    echo
-    echo "USAGE:"
-    echo "    git2html output.html \"Document title\" ...git-diff arguments..."
-    echo
-    echo "See: "
-    echo "    https://git-scm.com/docs/git-diff"
-    echo
-    echo "Example:"
-    echo "    git2html my_latest_commits.html \"Diff of my two latest commits\" -M HEAD~2"
-    echo
-    exit
-fi
-
-"$SCRIPT_DIR/node_modules/.bin/diff2html" -s line -f html -d word -i command -t "$2" -F "$1" --fct false -- "${@:3}"
+node "$SCRIPT_DIR/git2html.mjs" "$@"
