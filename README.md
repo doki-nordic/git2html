@@ -5,7 +5,7 @@ This tool allows you to create the git diffs in form of nice-looking HTML files.
 ## Usage
 
 ```bash
-git2html output.html \"Document title\" ...git-diff arguments...
+git2html output.html "Document title" ...git-diff arguments...
 ```
 
 For details on git-diff arguments, see https://git-scm.com/docs/git-diff
@@ -17,7 +17,7 @@ containing last two commits in current git repository. The
 document title will be `Diff of my two latest commits`.
 
 ```bash
-git2html my_latest_commits.html \"Diff of my two latest commits\" -M HEAD~2
+git2html my_latest_commits.html "Diff of my two latest commits" -M HEAD~2
 ```
 
 ## Download
