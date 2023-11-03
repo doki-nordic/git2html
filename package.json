@@ -1,0 +1,17 @@
+{
+  "name": "git2html",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "prebuild": "npx esbuild git2html.mjs --platform=node --format=cjs --bundle --target=node18 --outfile=dist/src/git2html.js ; node postprocess.mjs",
+    "build": "npx pkg -C Brotli --public -t node18-linux-x64,node18-win-x64,node18-macos-x64 -o dist/git2html dist/src/git2html.js"
+  },
+  "dependencies": {
+    "diff2html-cli": "^5.2.13"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.5",
+    "pkg": "^5.8.1"
+  }
+}
