@@ -28,3 +28,8 @@ contains executable for different platforms.
 The portable version (`git2html-portable-nodejs-bash`) is a bash script that
 uses Node.js. You can use it only if you have bash and Node.js (at least 18)
 available on your system.
+
+## Under the hood
+
+This tool is a wrapper aroud the [diff2html-cli](https://github.com/rtfpessoa/diff2html-cli).
+If you need more options and flexibility, use diff2html-cli instead.
