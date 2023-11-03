@@ -1,0 +1,58 @@
+name: Build
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Release Tag
+        required: false
+      upload:
+        type: choice
+        required: true
+        description: Upload artifact
+        default: 'no'
+        options:
+        - 'no'
+        - 'yes'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4.1.1
+    - name: Build
+      run: |
+        npm install
+        npm run build
+        mkdir pack
+        mkdir _tmp
+        cd _tmp
+        cp ../dist/git2html-win.exe ./git2html.exe
+        7z a -t7z -mx=9 ../pack/git2html-win-x64.7z *
+        rm *
+        cp ../dist/git2html-linux ./git2html
+        7z a -t7z -mx=9 ../pack/git2html-linux-x64.7z *
+        rm *
+        cp ../dist/ggit2html-macos ./git2html
+        7z a -t7z -mx=9 ../pack/git2html-macos-x64.7z *
+        rm *
+        cp ../dist/git2html.sh ./git2html
+        7z a -t7z -mx=9 ../pack/git2html-portable-nodejs-bash.7z *
+        ls -la ../pack
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: "${{ github.event.inputs.tag_name != '' }}"
+      with:
+        files: pack/*
+        draft: false
+        tag_name: ${{ github.event.inputs.tag_name }}
+        fail_on_unmatched_files: true
+        target_commitish: ${{ env.commit_hash }}
+        generate_release_notes: true
+    - name: Upload a Build Artifact
+      if: "${{ github.event.inputs.upload == 'yes' }}"
+      uses: actions/upload-artifact@v3.1.3
+      with:
+        path: pack/*
+
